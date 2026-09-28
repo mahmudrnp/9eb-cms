@@ -1,0 +1,59 @@
+@import "tailwindcss";
+/* বাংলা/ডেটা ফন্ট index.html-এ <link> দিয়ে লোড হয় (preconnect সহ — পারফরম্যান্স-ভালো) */
+
+/* ============ Phase 20 Design Tokens — সেনাবাহিনীর ব্র্যান্ড কালার ============ */
+/* গাঢ় সবুজ (আর্মি-ব্র্যান্ড, প্রাইমারি-অ্যাকশন) + মেরুন (রেজিমেন্ট-কালার, ব্র্যান্ড-অ্যাকসেন্ট)।
+   বিদ্যমান ৩০+ ফাইলে ব্যবহৃত ভ্যারিয়েবল-নাম (--color-navy, --color-crest-red ইত্যাদি) অপরিবর্তিত
+   রাখা হয়েছে — শুধু মান (value) বদলানো হয়েছে, যাতে পুরো অ্যাপের bg-navy/text-navy/
+   border-crest-red ইত্যাদি ক্লাস স্বয়ংক্রিয়ভাবে নতুন রঙে আপডেট হয়, একটাও ফাইল না ছুঁয়ে। */
+@theme {
+  --color-paper: #F5F6F3;
+  --color-ink: #14110F;
+  --color-navy: #14432A;        /* গাঢ় সবুজ — আর্মি-ব্র্যান্ড, প্রাইমারি-অ্যাকশন */
+  --color-navy-hover: #0D2E1C;  /* আরও গাঢ় সবুজ — hover-state */
+  --color-steel: #4A5A62;
+  --color-crest-red: #6E1423;   /* মেরুন — রেজিমেন্ট-কালার, ব্র্যান্ড-অ্যাকসেন্ট */
+  --color-success: #2F6F4E;
+  --color-warning: #B4791F;
+  --color-danger: #A3272B;
+
+  --font-bengali: 'Hind Siliguri', system-ui, sans-serif;
+  --font-data: 'IBM Plex Sans', system-ui, sans-serif;
+
+  --radius-card: 6px;
+  --radius-control: 4px;
+
+  --shadow-elevated: 0 4px 16px rgba(20, 17, 15, 0.16);
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-bengali);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* সংখ্যা/আর্থিক-ডেটার জন্য — Phase 03 নীতি: tabular figures */
+.font-data,
+.tabular-nums {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+}
+
+/* visible keyboard focus — accessibility নীতি (Phase 03 §৫) */
+:focus-visible {
+  outline: 2px solid var(--color-navy);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
